@@ -1,8 +1,9 @@
 doker_swarm := $(shell docker node inspect self 2> /dev/null > /dev/null && echo 0 || echo 1)
 #folder := /nagios/etc /nagios/var /nagios/plugins/nagios/graph/var /nagios/graph/etc
+
 start:
 
-	for folder in /nagios/etc /nagios/var /nagios/plugins/nagios/graph/var /nagios/graph/etc; do \
+	for folder in /nagios/etc /nagios/var /nagios/plugins nagios/graph/var /nagios/graph/etc; do \
   		sudo mkdir -p $$folder ; \
 	done
 	
