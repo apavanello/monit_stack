@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.5'
 
 services:
@@ -67,3 +68,37 @@ services:
     image: monitoringartist/grafana-xxl:latest
     ports:
      - 3000:3000
+=======
+version: '3.1'
+
+services:
+
+  zabbixdb:
+    image: monitoringartist/zabbix-db-mariadb:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MARIADB_USER=admin
+      - MARIADB_PASS=admin
+
+  zabbixserver:
+    image: monitoringartist/dockbix-xxl:dev
+    depends_on:
+      - zabbixdb
+    ports:
+      - "80:80"
+      - "10051:10051"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ZS_DBHost=zabbixdb
+      - ZS_DBUser=admin
+      - ZS_DBPassword=admin
+      - XXL_zapix=true
+      - XXL_grapher=true
+      
+  Nagios-Server:
+    image: jasonrivers/nagios
+    ports:
+     - 0.0.0.0:8080:80
+>>>>>>> e63dc1d6450f3b0703c7fb323e480951a1a386e1

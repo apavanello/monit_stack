@@ -1,0 +1,13 @@
+testes:
+  image: docker:stable
+
+  services:
+    - docker:dind
+
+  before_script:
+    - apk add --no-cache make
+    - apk add --no-cache py-pip
+    - pip install docker-compose
+    
+  script:
+    - make start
