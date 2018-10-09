@@ -67,3 +67,10 @@ services:
     image: monitoringartist/grafana-xxl:latest
     ports:
      - 3000:3000
+
+  snmp-agent:
+    image: polinux/snmpd
+    ports:
+      161:161/udp
+    restart: always
+  
