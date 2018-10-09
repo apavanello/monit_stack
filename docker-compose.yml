@@ -29,8 +29,7 @@ services:
       ZBX_MAXHOUSEKEEPERDELETE: 5000
     depends_on:
       - db
-    volumes:  
-      - /usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts
+
   
   zabbix-web:    # Interface WEB do ZABBIX encima do NGINX
     image: zabbix/zabbix-web-nginx-pgsql:ubuntu-latest
