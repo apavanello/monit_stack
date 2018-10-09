@@ -7,7 +7,7 @@ services:
     ports:
      - 81:80
      
-  db: #Postgres DB
+  postgres-server: #Postgres DB
     image: postgres:latest
     restart: always
     environment:
@@ -28,7 +28,7 @@ services:
       ZBX_HOUSEKEEPINGFREQUENCY: 1
       ZBX_MAXHOUSEKEEPERDELETE: 5000
     depends_on:
-      - db
+      - postgres-server
 
   
   zabbix-web:    # Interface WEB do ZABBIX encima do NGINX
@@ -43,7 +43,7 @@ services:
       PHP_TZ: "America/Sao_Paulo"  #Add São paulo
       ZBX_MAXEXECUTIONTIME: 500
     depends_on:
-      - db
+      - postgres-server
       - zabbix-server
     ports:    # Port where Zabbix UI is available
       - 8090:80
@@ -71,5 +71,4 @@ services:
     image: polinux/snmpd
     ports:
      - 161:161/udp
-    restart: always
   
