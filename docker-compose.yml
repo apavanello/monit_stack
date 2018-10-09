@@ -5,7 +5,13 @@ services:
   NagiosServer:
     image: jasonrivers/nagios
     ports:
-     - 81:80
+      - 81:80
+    volumes:
+      - /nagios/etc:/opt/nagios/etc/
+      - /nagios/var:/opt/nagios/var/
+      - /nagios/plugins:/opt/Custom-Nagios-Plugins
+      - /nagios/graph/var:/opt/nagiosgraph/var
+      - /nagios/graph/etc:/opt/nagiosgraph/etc
      
   db: #Postgres DB
     image: postgres:latest
