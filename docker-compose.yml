@@ -6,7 +6,13 @@ services:
     image: jasonrivers/nagios
     ports:
      - 81:80
-      
+     volumes:  
+      - /nagios/etc/:/opt/nagios/etc/
+      - /nagios/var:/opt/nagios/var/
+      - /nagios/plugins:/opt/Custom-Nagios-Plugins
+      - /nagios/nagiosgraph/var:/opt/nagiosgraph/var
+      - /nagios/nagiosgraph/etc:/opt/nagiosgraph/etc
+            
   db: #Postgres DB
     image: postgres:latest
     restart: always
