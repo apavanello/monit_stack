@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  NagiosServer:
+    image: jasonrivers/nagios
+    ports:
+     - 81:80
+    volumes:  
+     - /nagios/etc/:/opt/nagios/etc/
+     - /nagios/var:/opt/nagios/var/
+     - /nagios/plugins:/opt/Custom-Nagios-Plugins
+     - /nagios/nagiosgraph/var:/opt/nagiosgraph/var
+     - /nagios/nagiosgraph/etc:/opt/nagiosgraph/etc
+
+  adminer:  #Gerencia de databases
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  grafana-xxl:  #grafana (não configurado)
+    image: monitoringartist/grafana-xxl:latest
+    ports:
+     - 3000:3000
